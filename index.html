@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astha Cancer Foundation – Enlightening Cancer Patients</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-dark: #0d4f4f;
+    --teal: #1a7272;
+    --teal-light: #2a9696;
+    --teal-pale: #d0eeee;
+    --gold: #c8903a;
+    --gold-light: #e8b96a;
+    --cream: #fdf8f2;
+    --warm-white: #fefcf9;
+    --charcoal: #1c2b2b;
+    --slate: #4a6363;
+    --muted: #7a9999;
+    --divider: #d4e8e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(253,252,249,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--divider);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(13,79,79,0.08); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-light));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-circle svg { width: 22px; height: 22px; fill: white; }
+  .nav-logo-text { display: flex; flex-direction: column; }
+  .nav-logo-text span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 700; color: var(--teal-dark);
+    line-height: 1.1; letter-spacing: 0.02em;
+  }
+  .nav-logo-text span:last-child {
+    font-size: 9px; color: var(--muted); letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--slate);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal-dark); color: white !important;
+    padding: 8px 20px; border-radius: 6px;
+    font-weight: 600 !important; letter-spacing: 0.05em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8vh 5vw 8vh 7vw;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 28px; height: 2px;
+    background: var(--gold);
+  }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 700; line-height: 1.06;
+    color: var(--charcoal); margin-bottom: 24px;
+  }
+  .hero-h1 em {
+    font-style: italic; color: var(--teal);
+  }
+  .hero-sub {
+    font-size: 16px; line-height: 1.75; color: var(--slate);
+    max-width: 440px; margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal-dark); color: white;
+    padding: 14px 32px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--teal-dark);
+    padding: 14px 28px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; border: 2px solid var(--teal-pale);
+    cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px;
+    padding-top: 36px; border-top: 1px solid var(--divider);
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 700; color: var(--teal-dark);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 60%, #1a8f8f 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(200,144,58,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  }
+  .hero-circles {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-circle-1 {
+    position: absolute; width: 420px; height: 420px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-circle-2 {
+    position: absolute; width: 280px; height: 280px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-center-icon {
+    position: relative; z-index: 2;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-center-icon svg { width: 72px; height: 72px; }
+
+  .hero-card {
+    position: absolute; bottom: 60px; left: 40px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px; padding: 24px 28px;
+    color: white; max-width: 260px;
+    animation: float 5s ease-in-out infinite;
+  }
+  .hero-card-icon { font-size: 26px; margin-bottom: 10px; }
+  .hero-card-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; opacity: 0.7; text-transform: uppercase; margin-bottom: 4px; }
+  .hero-card-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 700; line-height: 1.1;
+  }
+
+  .hero-card2 {
+    position: absolute; top: 80px; right: 40px;
+    background: var(--gold);
+    border-radius: 14px; padding: 20px 24px;
+    color: white; max-width: 200px;
+    animation: float 5s ease-in-out infinite 1.5s;
+  }
+  .hero-card2-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+  .hero-card2-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700; margin-top: 4px;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 7vw; }
+  .section-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .section-tag::after { content: ''; flex: 0 0 24px; height: 2px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 3.5vw, 54px);
+    font-weight: 700; line-height: 1.1; color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+  .section-sub {
+    font-size: 16px; line-height: 1.75; color: var(--slate);
+    max-width: 560px;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center; margin-top: 60px;
+  }
+  .about-text p {
+    font-size: 16px; line-height: 1.85; color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .highlight-card {
+    background: white; border-radius: 14px; padding: 28px;
+    border: 1px solid var(--divider);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .highlight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(13,79,79,0.1);
+  }
+  .highlight-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: var(--teal-pale); display: flex;
+    align-items: center; justify-content: center;
+    margin-bottom: 16px; font-size: 22px;
+  }
+  .highlight-title { font-weight: 600; font-size: 15px; color: var(--charcoal); margin-bottom: 6px; }
+  .highlight-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── MISSION / VISION ── */
+  .mission { position: relative; overflow: hidden; }
+  .mission::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, var(--teal-pale) 0%, transparent 70%);
+    opacity: 0.5; pointer-events: none;
+  }
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 56px; }
+  .mv-card {
+    position: relative; overflow: hidden;
+    border-radius: 20px; padding: 48px 40px;
+    border: 1px solid var(--divider);
+  }
+  .mv-card.vision { background: var(--teal-dark); color: white; }
+  .mv-card.mission-card { background: white; }
+  .mv-card::before {
+    content: attr(data-letter);
+    position: absolute; bottom: -20px; right: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 160px; font-weight: 700; line-height: 1;
+    opacity: 0.05; pointer-events: none;
+  }
+  .mv-card.vision::before { color: white; }
+  .mv-card.mission-card::before { color: var(--teal-dark); }
+  .mv-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .mv-card.vision .mv-label { color: rgba(255,255,255,0.6); }
+  .mv-card.mission-card .mv-label { color: var(--teal); }
+  .mv-label::before { content: ''; width: 20px; height: 2px; background: var(--gold); display: block; }
+  .mv-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700; line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .mv-card.vision .mv-title { color: white; }
+  .mv-text { font-size: 15px; line-height: 1.8; }
+  .mv-card.vision .mv-text { color: rgba(255,255,255,0.75); }
+  .mv-card.mission-card .mv-text { color: var(--slate); }
+
+  /* ── OBJECTIVES ── */
+  .objectives { background: var(--cream); }
+  .obj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .obj-card {
+    background: white; border-radius: 16px; padding: 32px 28px;
+    border: 1px solid var(--divider);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .obj-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .obj-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(13,79,79,0.12); border-color: transparent; }
+  .obj-card:hover::after { transform: scaleX(1); }
+  .obj-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--teal-pale); line-height: 1; margin-bottom: 16px;
+  }
+  .obj-text { font-size: 15px; line-height: 1.75; color: var(--slate); }
+
+  /* ── ACTIVITIES ── */
+  .activities { position: relative; }
+  .act-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 56px; align-items: start; }
+  .act-list { display: flex; flex-direction: column; gap: 4px; }
+  .act-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px; border-radius: 12px;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .act-item:hover { background: var(--cream); }
+  .act-dot {
+    flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--teal); margin-top: 6px;
+    box-shadow: 0 0 0 4px var(--teal-pale);
+  }
+  .act-text { font-size: 15px; line-height: 1.7; color: var(--slate); }
+
+  .act-visual {
+    position: sticky; top: 120px;
+    background: linear-gradient(145deg, var(--teal-dark), #0a3a3a);
+    border-radius: 24px; padding: 48px 40px;
+    color: white; overflow: hidden;
+  }
+  .act-visual::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: rgba(200,144,58,0.15);
+  }
+  .act-visual-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 700; line-height: 1.2;
+    margin-bottom: 24px; position: relative; z-index: 1;
+  }
+  .act-visual-desc {
+    font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7);
+    margin-bottom: 36px; position: relative; z-index: 1;
+  }
+  .act-tags { display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+  .act-tag {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500;
+    padding: 6px 14px; border-radius: 20px;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--charcoal); color: white; position: relative; overflow: hidden; }
+  .contact::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 10% 50%, rgba(26,114,114,0.2) 0%, transparent 50%),
+      radial-gradient(circle at 90% 50%, rgba(200,144,58,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .contact .section-tag { color: var(--teal-light); }
+  .contact .section-title { color: white; }
+  .contact .section-title em { color: var(--gold-light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px; position: relative; z-index: 1; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+  .contact-row { display: flex; align-items: flex-start; gap: 18px; }
+  .contact-icon {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .contact-detail-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .contact-detail-val { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+  .contact-detail-val a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .contact-detail-val a:hover { color: var(--teal-light); }
+
+  .contact-map {
+    border-radius: 20px; overflow: hidden;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 300px; flex-direction: column; gap: 16px;
+    padding: 40px;
+  }
+  .map-placeholder-icon { font-size: 48px; }
+  .map-placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; color: rgba(255,255,255,0.6);
+    text-align: center;
+  }
+  .map-placeholder-sub { font-size: 14px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.6; }
+  .map-btn {
+    margin-top: 12px; background: var(--teal);
+    color: white; padding: 12px 28px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .map-btn:hover { background: var(--teal-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a1f1f; color: rgba(255,255,255,0.45);
+    padding: 28px 7vw;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px;
+  }
+  footer a { color: var(--teal-light); text-decoration: none; }
+  footer a:hover { color: white; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .about-grid, .mv-grid, .act-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .obj-grid { grid-template-columns: 1fr 1fr; }
+    nav .nav-links { display: none; }
+    .about-highlights { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .obj-grid { grid-template-columns: 1fr; }
+    section { padding: 72px 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-circle">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    </div>
+    <div class="nav-logo-text">
+      <span>Astha Cancer Foundation</span>
+      <span>Enlightening Cancer Patients</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left fade-up">
+    <div class="hero-tag">Registered NGO · Kathmandu, Nepal</div>
+    <h1 class="hero-h1">Hope Begins With <em>Early Detection</em></h1>
+    <p class="hero-sub">Astha Cancer Foundation is a non-profit organization dedicated to educating cancer patients, families, and communities across Nepal — from awareness to support.</p>
+    <div class="hero-actions">
+      <a href="#about" class="btn-primary">
+        Learn About Us
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">2014</span>
+        <span class="stat-label">Founded</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Free</span>
+        <span class="stat-label">Counseling</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Nepal</span>
+        <span class="stat-label">Based</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-circles">
+      <div class="hero-circle-1"></div>
+      <div class="hero-circle-2"></div>
+      <div class="hero-center-icon">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Heart ribbon cancer symbol -->
+          <circle cx="40" cy="40" r="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <!-- Stylized helping hands -->
+          <path d="M24 48 Q28 36 36 34 Q40 33 44 36 Q50 32 54 36 Q58 40 54 46 L40 60 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="32" cy="28" r="6" fill="rgba(200,144,58,0.7)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="48" cy="24" r="5" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <path d="M32 34 L32 26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M48 30 L48 23" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🎗️</div>
+      <div class="hero-card-title">Our Mission</div>
+      <div class="hero-card-val">Educate. Support. Heal.</div>
+    </div>
+    <div class="hero-card2">
+      <div class="hero-card2-label">Free Service</div>
+      <div class="hero-card2-val">Oncologist Consultation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-tag fade-up">Who We Are</div>
+  <h2 class="section-title fade-up">A Foundation Built on <em>Compassion</em></h2>
+  <p class="section-sub fade-up">Established in 2014, ACF is Nepal's dedicated cancer support organization — registered under the Organization Administration Act of 1978.</p>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>Astha Cancer Foundation (ACF), Nepal is a non-government, not-for-profit social organization founded in 2014 A.D. ACF is registered in the district administration office in Kathmandu, Nepal, committed to fighting cancer through education and community engagement.</p>
+      <p>ACF focuses on cancer prevention and early detection by partnering with schools, colleges, and social groups to encourage healthier lifestyle decisions that can reduce cancer risk across Nepal.</p>
+      <p>We also encourage exchange programs with various academic institutions around the world interested in studying cancer in Nepal — incorporating the latest management practices for our patients' benefit.</p>
+    </div>
+    <div class="about-highlights fade-up">
+      <div class="highlight-card">
+        <div class="highlight-icon">🏥</div>
+        <div class="highlight-title">Free Consultation</div>
+        <div class="highlight-desc">Direct access to oncologists at no cost for patients in need.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">📚</div>
+        <div class="highlight-title">Education Programs</div>
+        <div class="highlight-desc">School and community awareness sessions across Nepal.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🤝</div>
+        <div class="highlight-title">Patient Support</div>
+        <div class="highlight-desc">Medicine and financial assistance for those who need it most.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🌐</div>
+        <div class="highlight-title">Global Exchange</div>
+        <div class="highlight-desc">International academic partnerships for better cancer care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mission" id="mission">
+  <div class="section-tag fade-up">Purpose</div>
+  <h2 class="section-title fade-up">Our Vision &amp; <em>Mission</em></h2>
+  <p class="section-sub fade-up">Guided by a clear sense of purpose — a cancer-aware Nepal where every patient receives timely support and informed care.</p>
+  <div class="mv-grid">
+    <div class="mv-card vision fade-up" data-letter="V">
+      <div class="mv-label">Vision</div>
+      <div class="mv-title">A Society Free of Cancer's Shadow</div>
+      <p class="mv-text">To enlighten patients and community about early detection and prevention measures of cancer — so that early definitive treatment becomes the norm, leading to a society free from cancer's burden.</p>
+    </div>
+    <div class="mv-card mission-card fade-up" data-letter="M">
+      <div class="mv-label">Mission</div>
+      <div class="mv-title">Knowledge as the Cure</div>
+      <p class="mv-text">To educate cancer patients, their families, and the population as a whole about cancer — its early signs, preventive measures, and pathways to effective treatment available within Nepal and abroad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section class="objectives" id="objectives">
+  <div class="section-tag fade-up">Goals</div>
+  <h2 class="section-title fade-up">Our Key <em>Objectives</em></h2>
+  <p class="section-sub fade-up">Concrete, actionable goals that drive every program and initiative at the Astha Cancer Foundation.</p>
+  <div class="obj-grid">
+    <div class="obj-card fade-up">
+      <div class="obj-num">01</div>
+      <p class="obj-text">Conduct informal education and awareness programs on cancer among diverse communities across Nepal.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">02</div>
+      <p class="obj-text">Provide free counseling services to cancer patients and their family members throughout their journey.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">03</div>
+      <p class="obj-text">Offer free consultation sessions with qualified oncologists for patients who cannot afford specialist care.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">04</div>
+      <p class="obj-text">Conduct regular cancer awareness programs in schools, helping the next generation learn to prevent and detect cancer early.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">05</div>
+      <p class="obj-text">Encourage exchange programs with international institutions for bringing the world's best cancer management practices to Nepal.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">06</div>
+      <p class="obj-text">Provide financial support and medicines to helpless and needy cancer patients who have no other means of assistance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <div class="section-tag fade-up">What We Do</div>
+  <h2 class="section-title fade-up">Our <em>Activities</em></h2>
+  <p class="section-sub fade-up">From rural screening camps to international exchanges, our activities span the full spectrum of cancer care and awareness.</p>
+  <div class="act-grid">
+    <ul class="act-list fade-up">
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Educate patients and relatives about all aspects of cancer through IEC (Information, Education &amp; Counseling) materials.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Provide proper guidance on options and availability of cancer treatment — both within and outside Nepal.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Offer free-of-cost consultations with oncologists for patients who need specialist guidance.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Co-ordinate with other cancer support groups to ensure patients receive comprehensive treatment pathways.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Provide medicine and financial support to poor and needy cancer patients and their families.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Conduct cancer detection and screening camps in both rural and urban areas of Nepal.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Counsel patients and family members about early symptoms, preventive measures, and early detection of cancer.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Visit communities to educate residents regarding cancer and the treatments available locally and abroad.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Conduct regular cancer awareness programs in schools to build a cancer-aware younger generation.</span>
+      </li>
+    </ul>
+    <div class="act-visual fade-up">
+      <div class="act-visual-title">Enlightening Cancer Patients Since 2014</div>
+      <p class="act-visual-desc">Every activity we conduct is rooted in a simple belief: that informed patients make better decisions, and better decisions save lives.</p>
+      <div class="act-tags">
+        <span class="act-tag">Screening Camps</span>
+        <span class="act-tag">School Programs</span>
+        <span class="act-tag">Free Counseling</span>
+        <span class="act-tag">Financial Aid</span>
+        <span class="act-tag">IEC Materials</span>
+        <span class="act-tag">Global Exchange</span>
+        <span class="act-tag">Oncologist Access</span>
+        <span class="act-tag">Rural Outreach</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag fade-up">Reach Us</div>
+  <h2 class="section-title fade-up">Get in <em>Touch</em></h2>
+  <p class="section-sub fade-up" style="color:rgba(255,255,255,0.55);">Whether you're a patient, family member, researcher, or supporter — we're here for you.</p>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Address</div>
+          <div class="contact-detail-val">Jorpati, Gokarneshwor-12<br>Kathmandu, Nepal</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">
+            <a href="tel:014912301">01-4912301</a><br>
+            <a href="tel:9860290333">977-9860290333</a><br>
+            <a href="tel:9813922433">977-9813922433</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val"><a href="mailto:info@acf.org.np">info@acf.org.np</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-detail-label">Website</div>
+          <div class="contact-detail-val"><a href="http://www.acf.org.np" target="_blank">www.acf.org.np</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-map fade-up">
+      <div class="map-placeholder-icon">🗺️</div>
+      <div class="map-placeholder-text">Jorpati, Kathmandu</div>
+      <div class="map-placeholder-sub">Near Everest Bank ATM, Jorpati Chowk<br>100m from Boudha Road</div>
+      <a href="https://maps.google.com/?q=Jorpati+Gokarneshwor+Kathmandu+Nepal" target="_blank" class="map-btn">View on Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 Astha Cancer Foundation. All rights reserved.</span>
+  <span>Registered NGO · Kathmandu, Nepal · <a href="mailto:info@acf.org.np">info@acf.org.np</a></span>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // Stagger siblings
+  const groups = {};
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const parent = el.parentElement;
+    if (!groups[parent]) groups[parent] = [];
+    groups[parent].push(el);
+  });
+
+  let delay = 0;
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i % 6) * 0.08 + 's';
+    observer.observe(el);
+  });
+
+  // Trigger hero immediately
+  setTimeout(() => {
+    document.querySelector('.hero .fade-up')?.classList.add('visible');
+  }, 100);
+</script>
+</body>
+</html>
