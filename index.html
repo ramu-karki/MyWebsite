@@ -373,114 +373,6 @@
     padding: 6px 14px; border-radius: 20px;
   }
 
-  /* PDF / OFFICIAL DOCUMENTS SECTION (Integration of PDF data) */
-  .pdf-section {
-    background: var(--cream);
-    border-top: 1px solid var(--divider);
-    border-bottom: 1px solid var(--divider);
-  }
-  .pdf-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-top: 56px;
-    align-items: center;
-  }
-  .pdf-card {
-    background: white;
-    border-radius: 24px;
-    padding: 36px 32px;
-    box-shadow: 0 12px 32px rgba(13,79,79,0.08);
-    border: 1px solid var(--divider);
-    transition: all 0.3s;
-  }
-  .pdf-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px rgba(13,79,79,0.12);
-  }
-  .pdf-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-  .pdf-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--teal-dark);
-    margin-bottom: 6px;
-  }
-  .pdf-meta {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.03em;
-    margin-bottom: 20px;
-    border-bottom: 1px dashed var(--divider);
-    padding-bottom: 12px;
-  }
-  .pdf-desc {
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--slate);
-    margin-bottom: 28px;
-  }
-  .btn-pdf-download {
-    background: var(--teal-dark);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 40px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-pdf-download:hover {
-    background: var(--teal);
-  }
-  .pdf-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    background: white;
-    border-radius: 24px;
-    padding: 36px 32px;
-    border: 1px solid var(--divider);
-  }
-  .pdf-stat-item {
-    text-align: center;
-  }
-  .pdf-stat-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .pdf-stat-label {
-    font-size: 13px;
-    color: var(--slate);
-    font-weight: 500;
-    line-height: 1.4;
-  }
-  .pdf-note {
-    margin-top: 40px;
-    background: var(--teal-pale);
-    padding: 18px 24px;
-    border-radius: 18px;
-    font-size: 14px;
-    color: var(--teal-dark);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-left: 4px solid var(--gold);
-  }
-
   /* ── CONTACT ── */
   .contact { background: var(--charcoal); color: white; position: relative; overflow: hidden; }
   .contact::before {
@@ -549,7 +441,7 @@
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
-    .about-grid, .mv-grid, .act-grid, .contact-grid, .pdf-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid, .mv-grid, .act-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .obj-grid { grid-template-columns: 1fr 1fr; }
     nav .nav-links { display: none; }
     .about-highlights { grid-template-columns: 1fr; }
@@ -557,7 +449,6 @@
   @media (max-width: 560px) {
     .obj-grid { grid-template-columns: 1fr; }
     section { padding: 72px 6vw; }
-    .pdf-stats { grid-template-columns: 1fr; gap: 24px; }
   }
 </style>
 </head>
@@ -597,9 +488,18 @@
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><span class="stat-num">2014</span><span class="stat-label">Founded</span></div>
-      <div class="stat-item"><span class="stat-num">Free</span><span class="stat-label">Counseling</span></div>
-      <div class="stat-item"><span class="stat-num">Nepal</span><span class="stat-label">Based</span></div>
+      <div class="stat-item">
+        <span class="stat-num">2014</span>
+        <span class="stat-label">Founded</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Free</span>
+        <span class="stat-label">Counseling</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Nepal</span>
+        <span class="stat-label">Based</span>
+      </div>
     </div>
   </div>
   <div class="hero-right">
@@ -608,79 +508,278 @@
       <div class="hero-circle-1"></div>
       <div class="hero-circle-2"></div>
       <div class="hero-center-icon">
-        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M24 48 Q28 36 36 34 Q40 33 44 36 Q50 32 54 36 Q58 40 54 46 L40 60 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="32" cy="28" r="6" fill="rgba(200,144,58,0.7)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><circle cx="48" cy="24" r="5" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M32 34 L32 26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/><path d="M48 30 L48 23" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Heart ribbon cancer symbol -->
+          <circle cx="40" cy="40" r="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <!-- Stylized helping hands -->
+          <path d="M24 48 Q28 36 36 34 Q40 33 44 36 Q50 32 54 36 Q58 40 54 46 L40 60 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="32" cy="28" r="6" fill="rgba(200,144,58,0.7)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="48" cy="24" r="5" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <path d="M32 34 L32 26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M48 30 L48 23" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
       </div>
     </div>
-    <div class="hero-card"><div class="hero-card-icon">🎗️</div><div class="hero-card-title">Our Mission</div><div class="hero-card-val">Educate. Support. Heal.</div></div>
-    <div class="hero-card2"><div class="hero-card2-label">Free Service</div><div class="hero-card2-val">Oncologist Consultation</div></div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🎗️</div>
+      <div class="hero-card-title">Our Mission</div>
+      <div class="hero-card-val">Educate. Support. Heal.</div>
+    </div>
+    <div class="hero-card2">
+      <div class="hero-card2-label">Free Service</div>
+      <div class="hero-card2-val">Oncologist Consultation</div>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT, MISSION, OBJECTIVES, ACTIVITIES as in original but condensed for brevity (copy) -->
-<section class="about" id="about"><div class="section-tag fade-up">Who We Are</div><h2 class="section-title fade-up">A Foundation Built on <em>Compassion</em></h2><p class="section-sub fade-up">Established in 2014, ACF is Nepal's dedicated cancer support organization — registered under the Organization Administration Act of 1978.</p><div class="about-grid"><div class="about-text fade-up"><p>Astha Cancer Foundation (ACF), Nepal is a non-government, not-for-profit social organization founded in 2014 A.D. ACF is registered in the district administration office in Kathmandu, Nepal, committed to fighting cancer through education and community engagement.</p><p>ACF focuses on cancer prevention and early detection by partnering with schools, colleges, and social groups to encourage healthier lifestyle decisions that can reduce cancer risk across Nepal.</p><p>We also encourage exchange programs with various academic institutions around the world interested in studying cancer in Nepal — incorporating the latest management practices for our patients' benefit.</p></div><div class="about-highlights fade-up"><div class="highlight-card"><div class="highlight-icon">🏥</div><div class="highlight-title">Free Consultation</div><div class="highlight-desc">Direct access to oncologists at no cost for patients in need.</div></div><div class="highlight-card"><div class="highlight-icon">📚</div><div class="highlight-title">Education Programs</div><div class="highlight-desc">School and community awareness sessions across Nepal.</div></div><div class="highlight-card"><div class="highlight-icon">🤝</div><div class="highlight-title">Patient Support</div><div class="highlight-desc">Medicine and financial assistance for those who need it most.</div></div><div class="highlight-card"><div class="highlight-icon">🌐</div><div class="highlight-title">Global Exchange</div><div class="highlight-desc">International academic partnerships for better cancer care.</div></div></div></div></section>
-
-<section class="mission" id="mission"><div class="section-tag fade-up">Purpose</div><h2 class="section-title fade-up">Our Vision &amp; <em>Mission</em></h2><p class="section-sub fade-up">Guided by a clear sense of purpose — a cancer-aware Nepal where every patient receives timely support and informed care.</p><div class="mv-grid"><div class="mv-card vision fade-up" data-letter="V"><div class="mv-label">Vision</div><div class="mv-title">A Society Free of Cancer's Shadow</div><p class="mv-text">To enlighten patients and community about early detection and prevention measures of cancer — so that early definitive treatment becomes the norm, leading to a society free from cancer's burden.</p></div><div class="mv-card mission-card fade-up" data-letter="M"><div class="mv-label">Mission</div><div class="mv-title">Knowledge as the Cure</div><p class="mv-text">To educate cancer patients, their families, and the population as a whole about cancer — its early signs, preventive measures, and pathways to effective treatment available within Nepal and abroad.</p></div></div></section>
-
-<section class="objectives" id="objectives"><div class="section-tag fade-up">Goals</div><h2 class="section-title fade-up">Our Key <em>Objectives</em></h2><p class="section-sub fade-up">Concrete, actionable goals that drive every program and initiative at the Astha Cancer Foundation.</p><div class="obj-grid"><div class="obj-card fade-up"><div class="obj-num">01</div><p class="obj-text">Conduct informal education and awareness programs on cancer among diverse communities across Nepal.</p></div><div class="obj-card fade-up"><div class="obj-num">02</div><p class="obj-text">Provide free counseling services to cancer patients and their family members throughout their journey.</p></div><div class="obj-card fade-up"><div class="obj-num">03</div><p class="obj-text">Offer free consultation sessions with qualified oncologists for patients who cannot afford specialist care.</p></div><div class="obj-card fade-up"><div class="obj-num">04</div><p class="obj-text">Conduct regular cancer awareness programs in schools, helping the next generation learn to prevent and detect cancer early.</p></div><div class="obj-card fade-up"><div class="obj-num">05</div><p class="obj-text">Encourage exchange programs with international institutions for bringing the world's best cancer management practices to Nepal.</p></div><div class="obj-card fade-up"><div class="obj-num">06</div><p class="obj-text">Provide financial support and medicines to helpless and needy cancer patients who have no other means of assistance.</p></div></div></section>
-
-<section class="activities" id="activities"><div class="section-tag fade-up">What We Do</div><h2 class="section-title fade-up">Our <em>Activities</em></h2><p class="section-sub fade-up">From rural screening camps to international exchanges, our activities span the full spectrum of cancer care and awareness.</p><div class="act-grid"><ul class="act-list fade-up"><li class="act-item"><div class="act-dot"></div><span class="act-text">Educate patients and relatives about all aspects of cancer through IEC materials.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Provide proper guidance on options and availability of cancer treatment — both within and outside Nepal.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Offer free-of-cost consultations with oncologists for patients who need specialist guidance.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Provide medicine and financial support to poor and needy cancer patients.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Conduct cancer detection and screening camps in both rural and urban areas of Nepal.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Counsel patients and family members about early symptoms, preventive measures, and early detection.</span></li><li class="act-item"><div class="act-dot"></div><span class="act-text">Conduct regular cancer awareness programs in schools to build a cancer-aware younger generation.</span></li></ul><div class="act-visual fade-up"><div class="act-visual-title">Enlightening Cancer Patients Since 2014</div><p class="act-visual-desc">Every activity we conduct is rooted in a simple belief: that informed patients make better decisions, and better decisions save lives.</p><div class="act-tags"><span class="act-tag">Screening Camps</span><span class="act-tag">School Programs</span><span class="act-tag">Free Counseling</span><span class="act-tag">Financial Aid</span><span class="act-tag">IEC Materials</span><span class="act-tag">Global Exchange</span><span class="act-tag">Oncologist Access</span></div></div></div></section>
-
-<!-- ✦ INTEGRATED PDF SECTION: "new added.pdf" data integrated ✦ -->
-<section class="pdf-section" id="pdf-document">
-  <div class="section-tag fade-up">Official Records</div>
-  <h2 class="section-title fade-up">Foundation <em>Digital Archive</em></h2>
-  <p class="section-sub fade-up">The newly added PDF document contains registration data, outreach metrics, and statutory milestones extracted from official records of Astha Cancer Foundation.</p>
-
-  <div class="pdf-grid">
-    <div class="pdf-card fade-up">
-      <div class="pdf-icon">📄</div>
-      <div class="pdf-title">new_added.pdf</div>
-      <div class="pdf-meta">Registration certificate + activity ledger • 154 entries • Updated 2024</div>
-      <p class="pdf-desc">This official document (scanned from the District Administration Office) includes the foundation's registration number, committee details, and a sequential log of 154+ community awareness camps, screening programs, and patient support milestones. It authenticates our free consultation framework and school outreach numbers.</p>
-      <a href="#" class="btn-pdf-download" onclick="alert('📑 Official PDF: Registration Certificate & Activity Report (new_added.pdf) – The document confirms 154+ recorded events, free oncologist consultations, and ACF\'s commitment since 2014. Download simulation complete.'); return false;">⬇️ Download PDF (Official Copy)</a>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-tag fade-up">Who We Are</div>
+  <h2 class="section-title fade-up">A Foundation Built on <em>Compassion</em></h2>
+  <p class="section-sub fade-up">Established in 2014, ACF is Nepal's dedicated cancer support organization — registered under the Organization Administration Act of 1978.</p>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>Astha Cancer Foundation (ACF), Nepal is a non-government, not-for-profit social organization founded in 2014 A.D. ACF is registered in the district administration office in Kathmandu, Nepal, committed to fighting cancer through education and community engagement.</p>
+      <p>ACF focuses on cancer prevention and early detection by partnering with schools, colleges, and social groups to encourage healthier lifestyle decisions that can reduce cancer risk across Nepal.</p>
+      <p>We also encourage exchange programs with various academic institutions around the world interested in studying cancer in Nepal — incorporating the latest management practices for our patients' benefit.</p>
     </div>
-    <div class="pdf-stats fade-up">
-      <div class="pdf-stat-item"><span class="pdf-stat-val">154</span><span class="pdf-stat-label">Recorded activities & camps (as per PDF log)</span></div>
-      <div class="pdf-stat-item"><span class="pdf-stat-val">2014</span><span class="pdf-stat-label">Year of registration (certificate extract)</span></div>
-      <div class="pdf-stat-item"><span class="pdf-stat-val">1,280+</span><span class="pdf-stat-label">Patients counseled (PDF summary)</span></div>
-      <div class="pdf-stat-item"><span class="pdf-stat-val">46</span><span class="pdf-stat-label">School outreach events (documented)</span></div>
+    <div class="about-highlights fade-up">
+      <div class="highlight-card">
+        <div class="highlight-icon">🏥</div>
+        <div class="highlight-title">Free Consultation</div>
+        <div class="highlight-desc">Direct access to oncologists at no cost for patients in need.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">📚</div>
+        <div class="highlight-title">Education Programs</div>
+        <div class="highlight-desc">School and community awareness sessions across Nepal.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🤝</div>
+        <div class="highlight-title">Patient Support</div>
+        <div class="highlight-desc">Medicine and financial assistance for those who need it most.</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🌐</div>
+        <div class="highlight-title">Global Exchange</div>
+        <div class="highlight-desc">International academic partnerships for better cancer care.</div>
+      </div>
     </div>
-  </div>
-  <div class="pdf-note fade-up">
-    <span>📌</span> As extracted from <strong>new_added.pdf</strong> – The foundation's official ledger shows 154 sequential entries of cancer awareness programs, free medical camps, and financial aid disbursements. Each entry reflects our ongoing mission to support cancer patients across Nepal.
   </div>
 </section>
 
-<!-- CONTACT section preserved -->
+<!-- MISSION & VISION -->
+<section class="mission" id="mission">
+  <div class="section-tag fade-up">Purpose</div>
+  <h2 class="section-title fade-up">Our Vision &amp; <em>Mission</em></h2>
+  <p class="section-sub fade-up">Guided by a clear sense of purpose — a cancer-aware Nepal where every patient receives timely support and informed care.</p>
+  <div class="mv-grid">
+    <div class="mv-card vision fade-up" data-letter="V">
+      <div class="mv-label">Vision</div>
+      <div class="mv-title">A Society Free of Cancer's Shadow</div>
+      <p class="mv-text">To enlighten patients and community about early detection and prevention measures of cancer — so that early definitive treatment becomes the norm, leading to a society free from cancer's burden.</p>
+    </div>
+    <div class="mv-card mission-card fade-up" data-letter="M">
+      <div class="mv-label">Mission</div>
+      <div class="mv-title">Knowledge as the Cure</div>
+      <p class="mv-text">To educate cancer patients, their families, and the population as a whole about cancer — its early signs, preventive measures, and pathways to effective treatment available within Nepal and abroad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section class="objectives" id="objectives">
+  <div class="section-tag fade-up">Goals</div>
+  <h2 class="section-title fade-up">Our Key <em>Objectives</em></h2>
+  <p class="section-sub fade-up">Concrete, actionable goals that drive every program and initiative at the Astha Cancer Foundation.</p>
+  <div class="obj-grid">
+    <div class="obj-card fade-up">
+      <div class="obj-num">01</div>
+      <p class="obj-text">Conduct informal education and awareness programs on cancer among diverse communities across Nepal.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">02</div>
+      <p class="obj-text">Provide free counseling services to cancer patients and their family members throughout their journey.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">03</div>
+      <p class="obj-text">Offer free consultation sessions with qualified oncologists for patients who cannot afford specialist care.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">04</div>
+      <p class="obj-text">Conduct regular cancer awareness programs in schools, helping the next generation learn to prevent and detect cancer early.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">05</div>
+      <p class="obj-text">Encourage exchange programs with international institutions for bringing the world's best cancer management practices to Nepal.</p>
+    </div>
+    <div class="obj-card fade-up">
+      <div class="obj-num">06</div>
+      <p class="obj-text">Provide financial support and medicines to helpless and needy cancer patients who have no other means of assistance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <div class="section-tag fade-up">What We Do</div>
+  <h2 class="section-title fade-up">Our <em>Activities</em></h2>
+  <p class="section-sub fade-up">From rural screening camps to international exchanges, our activities span the full spectrum of cancer care and awareness.</p>
+  <div class="act-grid">
+    <ul class="act-list fade-up">
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Educate patients and relatives about all aspects of cancer through IEC (Information, Education &amp; Counseling) materials.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Provide proper guidance on options and availability of cancer treatment — both within and outside Nepal.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Offer free-of-cost consultations with oncologists for patients who need specialist guidance.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Co-ordinate with other cancer support groups to ensure patients receive comprehensive treatment pathways.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Provide medicine and financial support to poor and needy cancer patients and their families.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Conduct cancer detection and screening camps in both rural and urban areas of Nepal.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Counsel patients and family members about early symptoms, preventive measures, and early detection of cancer.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Visit communities to educate residents regarding cancer and the treatments available locally and abroad.</span>
+      </li>
+      <li class="act-item">
+        <div class="act-dot"></div>
+        <span class="act-text">Conduct regular cancer awareness programs in schools to build a cancer-aware younger generation.</span>
+      </li>
+    </ul>
+    <div class="act-visual fade-up">
+      <div class="act-visual-title">Enlightening Cancer Patients Since 2014</div>
+      <p class="act-visual-desc">Every activity we conduct is rooted in a simple belief: that informed patients make better decisions, and better decisions save lives.</p>
+      <div class="act-tags">
+        <span class="act-tag">Screening Camps</span>
+        <span class="act-tag">School Programs</span>
+        <span class="act-tag">Free Counseling</span>
+        <span class="act-tag">Financial Aid</span>
+        <span class="act-tag">IEC Materials</span>
+        <span class="act-tag">Global Exchange</span>
+        <span class="act-tag">Oncologist Access</span>
+        <span class="act-tag">Rural Outreach</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-tag fade-up">Reach Us</div>
   <h2 class="section-title fade-up">Get in <em>Touch</em></h2>
   <p class="section-sub fade-up" style="color:rgba(255,255,255,0.55);">Whether you're a patient, family member, researcher, or supporter — we're here for you.</p>
   <div class="contact-grid">
     <div class="contact-info fade-up">
-      <div class="contact-row"><div class="contact-icon">📍</div><div><div class="contact-detail-label">Address</div><div class="contact-detail-val">Jorpati, Gokarneshwor-12<br>Kathmandu, Nepal</div></div></div>
-      <div class="contact-row"><div class="contact-icon">📞</div><div><div class="contact-detail-label">Phone</div><div class="contact-detail-val"><a href="tel:014912301">01-4912301</a><br><a href="tel:9860290333">977-9860290333</a><br><a href="tel:9813922433">977-9813922433</a></div></div></div>
-      <div class="contact-row"><div class="contact-icon">✉️</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-val"><a href="mailto:info@acf.org.np">info@acf.org.np</a></div></div></div>
-      <div class="contact-row"><div class="contact-icon">🌐</div><div><div class="contact-detail-label">Website</div><div class="contact-detail-val"><a href="http://www.acf.org.np" target="_blank">www.acf.org.np</a></div></div></div>
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Address</div>
+          <div class="contact-detail-val">Jorpati, Gokarneshwor-12<br>Kathmandu, Nepal</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">
+            <a href="tel:014912301">01-4912301</a><br>
+            <a href="tel:9860290333">977-9860290333</a><br>
+            <a href="tel:9813922433">977-9813922433</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val"><a href="mailto:info@acf.org.np">info@acf.org.np</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-detail-label">Website</div>
+          <div class="contact-detail-val"><a href="http://www.acf.org.np" target="_blank">www.acf.org.np</a></div>
+        </div>
+      </div>
     </div>
     <div class="contact-map fade-up" style="padding:0; min-height:340px; border-radius:20px; overflow:hidden; position:relative;">
-      <iframe src="https://maps.google.com/maps?q=27.720883,85.371126&z=18&output=embed&hl=en" width="100%" height="100%" style="position:absolute;inset:0;border:0;filter:grayscale(20%) contrast(1.05);" allowfullscreen="" loading="lazy"></iframe>
-      <a href="https://www.google.com/maps/place/?q=place_id:ChIJ7__Zb8Yb6zkRTazI1GqmzOE" target="_blank" style="position:absolute;bottom:18px;right:18px;background:var(--teal-dark);color:white;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:2;">📍 Open in Maps</a>
+      <iframe
+        src="https://maps.google.com/maps?q=27.720883,85.371126&z=18&output=embed&hl=en"
+        width="100%" height="100%"
+        style="position:absolute;inset:0;border:0;filter:grayscale(20%) contrast(1.05);"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <a href="https://www.google.com/maps/place/?q=place_id:ChIJ7__Zb8Yb6zkRTazI1GqmzOE" target="_blank"
+        style="position:absolute;bottom:18px;right:18px;background:var(--teal-dark);color:white;
+        padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;
+        display:flex;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:2;">
+        📍 Open in Maps
+      </a>
     </div>
   </div>
 </section>
 
-<footer><span>© 2024 Astha Cancer Foundation. All rights reserved.</span><span>Registered NGO · Kathmandu, Nepal · <a href="mailto:info@acf.org.np">info@acf.org.np</a></span></footer>
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 Astha Cancer Foundation. All rights reserved.</span>
+  <span>Registered NGO · Kathmandu, Nepal · <a href="mailto:info@acf.org.np">info@acf.org.np</a></span>
+</footer>
 
 <script>
+  // Nav scroll effect
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
 
+  // Fade-up on scroll
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); observer.unobserve(entry.target); } });
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach((el, i) => { el.style.transitionDelay = (i % 6) * 0.08 + 's'; observer.observe(el); });
-  setTimeout(() => document.querySelector('.hero .fade-up')?.classList.add('visible'), 100);
+
+  // Stagger siblings
+  const groups = {};
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const parent = el.parentElement;
+    if (!groups[parent]) groups[parent] = [];
+    groups[parent].push(el);
+  });
+
+  let delay = 0;
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i % 6) * 0.08 + 's';
+    observer.observe(el);
+  });
+
+  // Trigger hero immediately
+  setTimeout(() => {
+    document.querySelector('.hero .fade-up')?.classList.add('visible');
+  }, 100);
 </script>
 </body>
 </html>
