@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0d4f4f">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d4f4f" />
     <title>Astha Cancer Foundation – Enlightening Cancer Patients</title>
     <style>
         /* ── OFFLINE FONTS (system stack) ── */
@@ -538,7 +538,7 @@
         }
 
         /* ══════════════════════════════════
-           CAMP REPORT MODAL (new)
+           CAMP REPORT MODAL
         ══════════════════════════════════ */
         .camp-overlay {
             position: fixed;
@@ -1555,6 +1555,145 @@
         }
 
         /* ══════════════════════════════════
+           EVENTS TIMELINE
+        ══════════════════════════════════ */
+        .events {
+            background: var(--cream);
+            position: relative;
+        }
+        .events .s-tag {
+            color: var(--teal-dark);
+        }
+        .events .s-title em {
+            color: var(--gold);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 48px;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--teal), var(--gold), var(--teal-pale));
+            border-radius: 4px;
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 48px;
+            padding-left: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .tl-item.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .tl-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -32px;
+            top: 6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--teal-dark);
+            border: 3px solid var(--warm-white);
+            box-shadow: 0 0 0 4px var(--teal-pale);
+            z-index: 2;
+        }
+        .tl-dot.gold {
+            background: var(--gold-bright);
+            box-shadow: 0 0 0 4px rgba(200, 144, 58, .25);
+        }
+
+        .tl-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            border: 1px solid var(--divider);
+            box-shadow: 0 4px 20px rgba(13, 79, 79, .06);
+            transition: transform .3s, box-shadow .3s;
+            cursor: pointer;
+        }
+        .tl-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(13, 79, 79, .12);
+        }
+
+        .tl-date {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            background: var(--teal-pale);
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .tl-title {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+        .tl-title em {
+            font-style: italic;
+            color: var(--teal);
+        }
+        .tl-sub {
+            font-size: 14px;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .tl-sub strong {
+            color: var(--teal-dark);
+        }
+        .tl-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        .tl-tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--cream);
+            color: var(--slate);
+            border: 1px solid var(--divider);
+        }
+        .tl-tag.highlight {
+            background: var(--teal-dark);
+            color: #fff;
+            border-color: var(--teal-dark);
+        }
+
+        .tl-click-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* ══════════════════════════════════
            DONATION SECTION
         ══════════════════════════════════ */
         .donate-sect {
@@ -2000,6 +2139,21 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .timeline {
+                padding-left: 28px;
+            }
+            .tl-dot {
+                left: -24px;
+                width: 14px;
+                height: 14px;
+            }
+            .tl-card {
+                padding: 18px 20px;
+            }
+            .tl-title {
+                font-size: 17px;
+            }
         }
 
         /* Smooth scrolling fix for iOS */
@@ -2013,14 +2167,16 @@
 <body>
 
     <!-- ═══════ CAMP REPORT MODAL (auto-opens) ═══════ -->
+    <!-- ═══════ CAMP REPORT MODAL (updated with exact DOCX content) ═══════ -->
     <div class="camp-overlay" id="campModal" role="dialog" aria-modal="true" aria-labelledby="campHeading">
         <div class="camp-box">
             <button class="camp-close" id="campClose" aria-label="Close report">&times;</button>
             <div class="camp-inner">
                 <span class="camp-badge">📋 Camp Report</span>
                 <h2 class="camp-title" id="campHeading">Free Cervical Cancer <em>Screening Camp</em></h2>
+
                 <p class="camp-sub">
-                    <strong>7 June 2026</strong> — Organized by <strong>Astha Cancer Foundation (ACF)</strong> in collaboration with <strong>Aarogya Well Care Clinic</strong> at Gokameshwor-5, Jorpati, Kathmandu, Nepal.
+                    <strong>7 June 2026</strong> — Organized by <strong>Astha Cancer Foundation (ACF)</strong> in collaboration with <strong>Aarogya Well Care Clinic</strong> at Gokarneshwor-5, Jorpati, Kathmandu, Nepal.
                 </p>
 
                 <div class="camp-meta">
@@ -2047,14 +2203,41 @@
                 </div>
 
                 <div class="camp-findings">
-                    <strong>🔬 Key findings:</strong> Among the 20 women screened, <strong>2 individuals (10%)</strong> tested positive for high-risk HPV infection. One participant tested positive for a high-risk HPV genotype categorized as <strong>"HPV Others"</strong>, while another tested positive for both <strong>HPV 16 &amp; a high-risk HPV genotype</strong>. ACF will provide further counseling and follow-up evaluation.
+                    <strong>🔬 Key findings:</strong> Among the 20 women screened, <strong>2 individuals (10%)</strong> tested positive for high-risk HPV infection. One participant tested positive for a high-risk HPV genotype categorized as <strong>"HPV Others"</strong>, while another tested positive for both <strong>HPV 16 &amp; a high-risk HPV genotype</strong>. ACF will take responsibility to provide further counseling and management for follow-up evaluation.
+                    <br><br>
+                    Of the 20 women screened, 2 (10%) tested positive for high-risk HPV infection. The detection of HPV 16 and other high-risk HPV genotypes highlights the presence of cervical cancer risk factors within the community. Although the sample size was limited, the findings underscore the importance of regular cervical cancer screening and early identification of high-risk HPV infections to facilitate timely follow-up and prevention of cervical cancer. The results demonstrate the value of community-based HPV DNA screening initiatives and support the continuation & expansion of such programs.
                 </div>
 
                 <div class="camp-section-title">💰 Program Cost</div>
                 <div class="camp-cost">NPR 75,000</div>
                 <p style="font-size:13px;color:var(--slate);line-height:1.7;margin:2px 0 14px;">
-                    Covering HPV DNA testing, medical personnel, human resources, camp operations &amp; logistics, and community outreach &amp; coordination.
+                    Covering HPV DNA testing, Medical personnel, Human resources, Camp operations & logistics, Community outreach & coordination. This initiative reflects ACF's dedication to expand access to preventive healthcare and promote early detection of cervical cancer among women in Nepal.
                 </p>
+
+                <div class="camp-section-title">🎗️ Appeal for Support and Future Screening Camps</div>
+                <div style="background:#fef9f0;border-radius:12px;padding:16px 18px;margin:10px 0 16px;border-left:4px solid var(--gold);">
+                    <p style="font-size:14px;line-height:1.8;color:var(--slate);margin-bottom:12px;">
+                        <strong>Support a Woman. Prevent a Cancer.</strong><br>
+                        Cervical cancer remains one of the most preventable forms of cancer when women have access to timely screening and follow-up care. Through this free screening camp, Astha Cancer Foundation was able to provide potentially life-saving HPV DNA testing to women who might otherwise not have access to such services.
+                        <br><br>
+                        The successful completion of this camp was made possible through the Foundation's commitment to covering all costs. However, many more women in underserved communities continue to need access to screening services.
+                        <br><br>
+                        We invite individuals, organizations, businesses, and well-wishers to join us in our mission.
+                    </p>
+                    <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:8px;">
+                        Your Contribution Can Help Provide:
+                    </p>
+                    <ul style="font-size:13px;line-height:1.8;color:var(--slate);padding-left:20px;margin-bottom:12px;">
+                        <li>Free HPV DNA testing for women at risk</li>
+                        <li>Community awareness and education programs</li>
+                        <li>Medical consultations and counseling</li>
+                        <li>Follow-up care and referrals for positive cases</li>
+                        <li>Screening camps in underserved and rural communities</li>
+                    </ul>
+                    <p style="font-size:14px;font-weight:600;color:var(--teal-dark);">
+                        Together, we can reduce the burden of cervical cancer and ensure that more women have access to early detection and lifesaving preventive care.
+                    </p>
+                </div>
 
                 <div class="camp-cta-box">
                     <p>🎗️ <em>Support a Woman. Prevent a Cancer.</em> — Your donation helps save lives.</p>
@@ -2129,6 +2312,7 @@
             <li><a href="#mission">Mission</a></li>
             <li><a href="#objectives">Objectives</a></li>
             <li><a href="#activities">Activities</a></li>
+            <li><a href="#events">Events</a></li>
             <li><a href="#donate">Donate</a></li>
             <li><a href="#contact" class="nav-cta">Contact Us</a></li>
             <li><button class="nav-donate-btn" data-open-modal>🎗️ Donate</button></li>
@@ -2145,6 +2329,7 @@
             <li><a href="#mission" class="drawer-link">Mission &amp; Vision</a></li>
             <li><a href="#objectives" class="drawer-link">Objectives</a></li>
             <li><a href="#activities" class="drawer-link">Activities</a></li>
+            <li><a href="#events" class="drawer-link">Events</a></li>
             <li><a href="#donate" class="drawer-link">Donate</a></li>
         </ul>
         <button class="mobile-drawer-donate" data-open-modal>🎗️ Donate Now</button>
@@ -2271,6 +2456,50 @@
         </div>
     </section>
 
+    <!-- ═══════ EVENTS TIMELINE ═══════ -->
+    <section class="events" id="events">
+        <div class="s-tag fade-up">Our Events</div>
+        <h2 class="s-title fade-up">Timeline of <em>Impact</em></h2>
+        <p class="s-sub fade-up">Every event we organize brings us closer to a cancer-aware Nepal. Explore our journey of screening, education, and community outreach.</p>
+
+        <div class="timeline">
+            <!-- Event 1: Cervical Cancer Screening Camp (from DOCX) -->
+            <div class="tl-item fade-up" data-camp="1">
+                <div class="tl-dot gold"></div>
+                <div class="tl-card" data-open-camp>
+                    <div class="tl-date">📅 7 June 2026</div>
+                    <div class="tl-title">Free Cervical Cancer <em>Screening Camp</em></div>
+                    <div class="tl-sub">
+                        <strong>Gokameshwor-5, Jorpati, Kathmandu</strong> — Women aged 30–65 years received free HPV DNA testing. <strong>20 women screened</strong>, with <strong>2 positive cases (10%)</strong> identified and referred for follow-up.
+                    </div>
+                    <div class="tl-tags">
+                        <span class="tl-tag highlight">HPV DNA Testing</span>
+                        <span class="tl-tag">Women's Health</span>
+                        <span class="tl-tag">Early Detection</span>
+                        <span class="tl-tag">Free Screening</span>
+                        <span class="tl-tag">NPR 75,000</span>
+                    </div>
+                    <div class="tl-click-hint">🔍 Click to view full report</div>
+                </div>
+            </div>
+
+            <!-- Placeholder for future events -->
+            <div class="tl-item fade-up" style="opacity:0.6;">
+                <div class="tl-dot" style="background:var(--teal-pale);box-shadow:0 0 0 4px rgba(208,238,238,0.5);"></div>
+                <div class="tl-card" style="cursor:default;border-style:dashed;">
+                    <div class="tl-date">📅 Upcoming</div>
+                    <div class="tl-title">More Events <em>Coming Soon</em></div>
+                    <div class="tl-sub">Stay tuned for future screening camps, awareness programs, and community outreach initiatives.</div>
+                    <div class="tl-tags">
+                        <span class="tl-tag">Planning</span>
+                        <span class="tl-tag">Community</span>
+                        <span class="tl-tag">Cancer Awareness</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ═══════ DONATION SECTION ═══════ -->
     <section class="donate-sect" id="donate">
         <div class="s-tag fade-up">Ways to Donate</div>
@@ -2358,6 +2587,8 @@
         campModal.classList.add('active');
         document.body.style.overflow = 'hidden';
         campReopen.classList.remove('show');
+        // close any other modals
+        closeDonate();
     }
 
     function closeCamp() {
@@ -2370,6 +2601,11 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && campModal.classList.contains('active')) closeCamp(); });
 
     campReopen.addEventListener('click', openCamp);
+
+    // Open camp from timeline card
+    document.querySelectorAll('[data-open-camp]').forEach(el => {
+        el.addEventListener('click', openCamp);
+    });
 
     /* ── Auto-open camp modal once per session ── */
     setTimeout(() => {
