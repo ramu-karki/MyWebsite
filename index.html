@@ -273,7 +273,77 @@
         }
 
         /* ══════════════════════════════════
-           DONATION MODAL (existing)
+           QR FULL-SCREEN VIEWER
+        ══════════════════════════════════ */
+        .qr-fullscreen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(8, 22, 22, .92);
+            backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s, visibility .35s;
+            cursor: zoom-out;
+        }
+        .qr-fullscreen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .qr-fullscreen img {
+            max-width: 92vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, .15);
+            background: #fff;
+            padding: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+            cursor: default;
+            transition: transform .3s;
+        }
+        .qr-fullscreen .close-btn {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .25s, transform .2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .qr-fullscreen .close-btn:hover {
+            background: rgba(255, 255, 255, .25);
+            transform: rotate(90deg);
+        }
+        .qr-fullscreen .hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, .4);
+            font-size: 13px;
+            letter-spacing: .06em;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════════
+           DONATION MODAL (QR below details)
         ══════════════════════════════════ */
         .modal-overlay {
             position: fixed;
@@ -474,6 +544,43 @@
             .bank-label {
                 min-width: auto;
             }
+        }
+
+        /* ── QR code in modal (full width, below details) ── */
+        .modal-qr-section {
+            background: #fdfaf5;
+            border-radius: 14px;
+            padding: 24px 20px 20px;
+            margin-bottom: 18px;
+            border: 1px solid var(--divider);
+            text-align: center;
+        }
+        .modal-qr-section .qr-img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid var(--divider);
+            background: #fff;
+            padding: 8px;
+            display: block;
+            margin: 0 auto 14px;
+            cursor: zoom-in;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .modal-qr-section .qr-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(13, 79, 79, .12);
+        }
+        .modal-qr-section .qr-label {
+            font-size: 14px;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .modal-qr-section .qr-label strong {
+            color: var(--teal-dark);
         }
 
         .modal-note {
@@ -1694,7 +1801,7 @@
         }
 
         /* ══════════════════════════════════
-           DONATION SECTION
+           DONATION SECTION (QR below details)
         ══════════════════════════════════ */
         .donate-sect {
             background: linear-gradient(170deg, #fef9f0, #fefcf7, #fffefb);
@@ -1719,6 +1826,8 @@
             align-items: start;
             position: relative;
         }
+
+        /* ── bank card with QR below ── */
         .donate-bank-lg {
             background: #fffefb;
             border: 2px solid var(--gold);
@@ -1737,6 +1846,86 @@
             background: linear-gradient(90deg, var(--gold), var(--teal-light), var(--gold));
             border-radius: 0 0 8px 8px;
         }
+
+        .donate-bank-lg .bank-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--divider);
+            font-size: 14px;
+        }
+        .donate-bank-lg .bank-row:last-child {
+            border-bottom: none;
+        }
+        .donate-bank-lg .bank-label {
+            font-weight: 600;
+            color: var(--teal-dark);
+            min-width: 90px;
+            font-size: 11px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .donate-bank-lg .bank-val {
+            color: var(--charcoal);
+            font-weight: 500;
+            word-break: break-all;
+        }
+        .donate-bank-lg .bank-val.accent {
+            font-weight: 700;
+            color: #0a3a3a;
+            font-size: 15px;
+            letter-spacing: .02em;
+        }
+        .donate-bank-lg .swift {
+            display: inline-block;
+            background: var(--teal-dark);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .06em;
+        }
+
+        /* ── QR in donation section (full width, below details) ── */
+        .qr-donate-box {
+            background: #fdfaf5;
+            border-radius: 16px;
+            padding: 24px 20px 20px;
+            margin-top: 22px;
+            border: 1px solid var(--divider);
+            text-align: center;
+        }
+        .qr-donate-box .qr-img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid var(--divider);
+            background: #fff;
+            padding: 8px;
+            display: block;
+            margin: 0 auto 14px;
+            cursor: zoom-in;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .qr-donate-box .qr-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(13, 79, 79, .12);
+        }
+        .qr-donate-box .qr-label {
+            font-size: 14px;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .qr-donate-box .qr-label strong {
+            color: var(--teal-dark);
+        }
+
         .donate-info {
             display: flex;
             flex-direction: column;
@@ -2083,6 +2272,14 @@
                 padding: 24px 18px 20px;
             }
 
+            /* QR still full width, just smaller max on very small screens */
+            .modal-qr-section .qr-img {
+                max-width: 260px;
+            }
+            .qr-donate-box .qr-img {
+                max-width: 260px;
+            }
+
             .contact-grid {
                 gap: 28px;
             }
@@ -2166,8 +2363,14 @@
 </head>
 <body>
 
+    <!-- ═══════ QR FULL-SCREEN VIEWER ═══════ -->
+    <div class="qr-fullscreen" id="qrFullscreen" onclick="closeQrFullscreen()">
+        <button class="close-btn" id="qrFullscreenClose" aria-label="Close fullscreen">&times;</button>
+        <img id="qrFullscreenImg" src="" alt="QR code full view" />
+        <div class="hint">Tap anywhere or press ✕ to close</div>
+    </div>
+
     <!-- ═══════ CAMP REPORT MODAL (auto-opens) ═══════ -->
-    <!-- ═══════ CAMP REPORT MODAL (updated with exact DOCX content) ═══════ -->
     <div class="camp-overlay" id="campModal" role="dialog" aria-modal="true" aria-labelledby="campHeading">
         <div class="camp-box">
             <button class="camp-close" id="campClose" aria-label="Close report">&times;</button>
@@ -2247,7 +2450,7 @@
         </div>
     </div>
 
-    <!-- ═══════ DONATION MODAL ═══════ -->
+    <!-- ═══════ DONATION MODAL (QR below details) ═══════ -->
     <div class="modal-overlay" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="donateHeading">
         <div class="modal-box">
             <button class="modal-close" id="donateClose" aria-label="Close">&times;</button>
@@ -2264,6 +2467,16 @@
                     <div class="bank-row"><span class="bank-label">Branch</span><span class="bank-val">Bouddha Branch, Kathmandu</span></div>
                     <div class="bank-row"><span class="bank-label">Swift Code</span><span class="bank-val"><span class="swift">NSBINPKA</span></span></div>
                 </div>
+
+                <!-- ── QR below details, full width ── -->
+                <div class="modal-qr-section">
+                    <img class="qr-img" src="QR.jpeg" alt="QR code for donation to Astha Cancer Foundation" onclick="openQrFullscreen(this)" />
+                    <div class="qr-label">
+                        <strong>📱 Scan to donate</strong><br />
+                        Use your mobile banking app or e-payment wallet to scan this QR code and support cancer awareness.
+                    </div>
+                </div>
+
                 <div class="modal-note">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c8903a" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                     <span>For donation queries, please contact us by phone or email. We ensure complete transparency in fund utilisation.</span>
@@ -2500,7 +2713,7 @@
         </div>
     </section>
 
-    <!-- ═══════ DONATION SECTION ═══════ -->
+    <!-- ═══════ DONATION SECTION (QR below details) ═══════ -->
     <section class="donate-sect" id="donate">
         <div class="s-tag fade-up">Ways to Donate</div>
         <h2 class="s-title fade-up">Your <em>Support</em> Matters</h2>
@@ -2512,6 +2725,16 @@
                 <div class="bank-row"><span class="bank-label">Account No.</span><span class="bank-val accent">20525 240200 228</span></div>
                 <div class="bank-row"><span class="bank-label">Branch</span><span class="bank-val">Bouddha Branch, Kathmandu</span></div>
                 <div class="bank-row"><span class="bank-label">Swift Code</span><span class="bank-val"><span class="swift">NSBINPKA</span></span></div>
+
+                <!-- ── QR below details, full width ── -->
+                <div class="qr-donate-box">
+                    <img class="qr-img" src="QR.jpeg" alt="QR code for donation to Astha Cancer Foundation" onclick="openQrFullscreen(this)" />
+                    <div class="qr-label">
+                        <strong>📱 Scan to donate</strong><br />
+                        Use your mobile banking app or e-payment wallet to scan this QR code and support cancer awareness.
+                    </div>
+                </div>
+
                 <div style="margin-top:20px;">
                     <button class="btn-act btn-act-teal" id="copyBtn2" style="width:100%;">📋 Copy Bank Details</button>
                 </div>
@@ -2575,6 +2798,40 @@
 </footer>
 
 <script>
+    /* ── QR Fullscreen ── */
+    const qrFullscreen = document.getElementById('qrFullscreen');
+    const qrFullscreenImg = document.getElementById('qrFullscreenImg');
+    const qrFullscreenClose = document.getElementById('qrFullscreenClose');
+
+    function openQrFullscreen(imgElement) {
+        qrFullscreenImg.src = imgElement.src;
+        qrFullscreen.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeQrFullscreen() {
+        qrFullscreen.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    qrFullscreenClose.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeQrFullscreen();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && qrFullscreen.classList.contains('active')) {
+            closeQrFullscreen();
+        }
+    });
+
+    // Also close when clicking the overlay background (but not the image itself)
+    qrFullscreen.addEventListener('click', function(e) {
+        if (e.target === qrFullscreen || e.target === qrFullscreenImg) {
+            closeQrFullscreen();
+        }
+    });
+
     /* ── Utilities ── */
     const $ = id => document.getElementById(id);
 
